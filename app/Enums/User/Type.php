@@ -12,11 +12,11 @@ class Type
      *
      * @return array
      */
-    public function all()
+    public static function all()
     {
         return [
-            'ADMIN' => self::ADMIN,
-            'REGULAR_USER' => self::REGULAR_USER,
+            self::ADMIN  => 'Administrator',
+            self::REGULAR_USER => 'Regular User',
         ];
     }
 }

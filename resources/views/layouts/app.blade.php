@@ -47,6 +47,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('audit.logs.index') }}">{{ __('Logs') }}</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
+                                </li>
                             @endif
                         @endif
                         <!-- Authentication Links -->

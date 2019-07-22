@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <h3>Products</h3>
+                <h3>Users</h3>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active" aria-current="page">
-                            Products
+                            Users
                         </li>
                     </ol>
                 </nav>
@@ -19,7 +19,7 @@
 
                 <div class="float-right">
                     <a
-                        href="{{ route('products.type.create') }}"
+                        href="{{ route('user.create') }}"
                         class="btn btn-primary">
                         Create
                     </a>
@@ -28,33 +28,28 @@
                 <div class="clearfix"></div>
 
                 <table
-                    id="products-table"
+                    id="users-table"
                     class="table table-bordered mt-2">
                     <thead>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Count</th>
-                        <th>Actions</th>
+                        <th>Full Name</th>
+                        <th>E-Mail</th>
+                        <th>Type</th>
+                        <th></th>
                     </thead>
                     <tbody>
-                        @forelse($products as $product)
+                        @forelse($users as $user)
                             <tr>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->getCountAttribute() }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->type }}</td>
                                 <td>
                                     <a
-                                        href="{{ route('products.product.index', $product->id) }}"
-                                        class="btn btn-info text-light">
-                                        Show
-                                    </a>
-                                    <a
-                                        href="{{ route('products.type.edit', $product->id) }}"
+                                        href="{{ route('user.edit', $user->id) }}"
                                         class="btn btn-warning">
                                         Edit
                                     </a>
                                     <button
-                                        data-url="{{ route('products.type.destroy', $product->id) }}"
+                                        data-url="{{ route('user.destroy', $user->id) }}"
                                         class="btn btn-danger remove-button" 
                                         type="button">
                                         Remove
@@ -73,14 +68,14 @@
                     </tbody>
                 </table>
 
-                {{ $products->links() }}
+                {{ $users->links() }}
             </div>
         </div>
     </div>
 
     <form 
         method="post" 
-        id="remove-product-form">
+        id="remove-user-form">
         @csrf 
         @method('delete')
         
@@ -90,10 +85,10 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#products-table').on('click', '.remove-button',  function () {
+            $('#users-table').on('click', '.remove-button',  function () {
                 console.log($(this).data('url'));
-                $('#remove-product-form').attr('action', $(this).data('url'));
-                $('#remove-product-form').submit();
+                $('#remove-user-form').attr('action', $(this).data('url'));
+                $('#remove-user-form').submit();
             })
         });
     </script>

@@ -44,6 +44,8 @@
                         @endforelse
                     </tbody>
                 </table>
+                
+                {{ $logs->links() }}
             </div>
         </div>
     </div>

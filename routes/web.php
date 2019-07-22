@@ -41,10 +41,21 @@ Route::middleware('auth')
             ->prefix('admin')
             ->group(function () {
                 
-            Route::namespace('Audit')
-                ->prefix('audit')
-                ->group(function () {
-                    Route::get('/', 'LogsController@index')->name('audit.logs.index');
-                });
+                Route::namespace('Audit')
+                    ->prefix('audit')
+                    ->group(function () {
+                        Route::get('/', 'LogsController@index')->name('audit.logs.index');
+                    });
+
+                Route::namespace('User')
+                    ->prefix('user')
+                    ->group(function() {
+                        Route::get('/', 'UsersController@index')->name('user.index');
+                        Route::get('create', 'UsersController@create')->name('user.create');
+                        Route::post('/', 'UsersController@store')->name('user.store');
+                        Route::get('{id}/edit', 'UsersController@edit')->name('user.edit');
+                        Route::put('{id}', 'UsersController@update')->name('user.update');
+                        Route::delete('{id}', 'UsersController@destroy')->name('user.destroy');
+                    });
             });
     });
