@@ -94,12 +94,13 @@ class ProductService
     public function update($attributes, $id)
     {
         $this->product = $this->findFirst($id);
-        $code = optional($this->product)->code;
         
         $this->product->update([
             'code' => $attributes['code'],
             'type_id' => $this->type,
         ]);
+        
+        $code = optional($this->product)->code;
 
         Logger::createForCurrentUser([
             'info' => "Updated product {$code}",

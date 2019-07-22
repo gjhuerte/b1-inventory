@@ -30,6 +30,7 @@
                             <tr>
                                 <td>{{ $log->info }}</td>
                                 <td>{{ $log->name }}</td>
+                                <td>{{ optional($log->created_at)->format('M d, Y h:m i') }}</td>
                             </tr>
                         @empty
                             <tr>

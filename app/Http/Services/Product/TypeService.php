@@ -57,15 +57,16 @@ class TypeService
      */
     public function create($attributes)
     {
-        $code = optional($this->product)->code;
-        $this->product->create([
+        $this->product = $this->product->create([
             'code' => $attributes['code'],
             'name' => $attributes['name'],
             'description' => $attributes['description'],
         ]);
 
+        $code = optional($this->product)->code;
+
         Logger::createForCurrentUser([
-            'info' => "Created a new product {$code}",
+            'info' => "Created a new product type '{$code}'",
             'data' => json_encode($this->product),
         ]);
 
@@ -80,16 +81,17 @@ class TypeService
      */
     public function update($attributes, $id)
     {
-        $code = optional($this->product)->code;
         $this->product = $this->find($id);
+
         $this->product->update([
             'code' => $attributes['code'],
             'name' => $attributes['name'],
             'description' => $attributes['description'],
         ]);
 
+        $code = optional($this->product)->code;
         Logger::createForCurrentUser([
-            'info' => "Updated product {$code}",
+            'info' => "Updated product type '{$code}'",
             'data' => json_encode($this->product),
         ]);
 
@@ -107,7 +109,7 @@ class TypeService
         $code = optional($this->product)->code;
 
         Logger::createForCurrentUser([
-            'info' => "Remove product {$code}",
+            'info' => "Remove product type '{$code}'",
             'data' => json_encode($this->product),
         ]);
 
