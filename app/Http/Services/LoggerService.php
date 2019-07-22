@@ -19,6 +19,19 @@ class LoggerService
     }
 
     /**
+     * Descending date
+     *
+     * @return mixed
+     */
+    public function descendingDate()
+    {
+        $this->log = $this->log
+            ->orderByDesc('created_at');
+
+        return $this;
+    }
+
+    /**
      * Fetch all the products as paginated
      *
      * @return mixed

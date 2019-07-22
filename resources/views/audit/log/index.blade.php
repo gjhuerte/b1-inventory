@@ -24,6 +24,7 @@
                     <thead>
                         <th>Information</th>
                         <th>User</th>
+                        <th>Date</th>
                     </thead>
                     <tbody>
                         @forelse($logs as $log)

@@ -15,7 +15,7 @@ class LogsController extends Controller
      */
     public function index(LoggerService $service)
     {
-        $logs = $service->get();
+        $logs = $service->descendingDate()->get();
 
         return view('audit.log.index', compact('logs'));
     }
