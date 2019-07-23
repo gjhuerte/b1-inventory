@@ -17,6 +17,43 @@
 
                 @include('layouts.notification')
 
+                <div class="float-left">
+                    <div class="form-group">
+                        @if (Request::has('q'))
+                            <form
+                                class="d-flex flex-row justify-content-center align-items-center"
+                                method="get"
+                                action="{{ route('products.type.index') }}">
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger">
+                                    <i class="fas fa-search"></i>
+                                    Clear Searches
+                                </button>
+                            </form>
+                        @else
+                            <form
+                                class="d-flex flex-row justify-content-center align-items-center"
+                                method="get"
+                                action="{{ route('products.type.index') }}">
+                                <input
+                                    type="text"
+                                    name="q"
+                                    class="form-control"
+                                    placeholder="Search..."
+                                />
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary ml-1">
+                                    <i class="fas fa-search"></i>
+                                    Search
+                                </button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="float-right">
                     <a
                         href="{{ route('products.type.create') }}"

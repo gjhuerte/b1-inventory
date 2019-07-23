@@ -15,9 +15,9 @@ class TypesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(TypeService $service)
+    public function index(Request $request, TypeService $service)
     {
-        $products = $service->get();
+        $products = $service->searchFrom($request->q)->get();
 
         return view('product.type.index', compact('products'));
     }

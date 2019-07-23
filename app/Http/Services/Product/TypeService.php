@@ -29,13 +29,33 @@ class TypeService
     }
 
     /**
+     * Search from the columns
+     *
+     * @param String $queryString
+     * @return mixed
+     */
+    public function searchFrom($queryString)
+    {
+        $this->product = $this->product->where(function ($query) use ($queryString) {
+            if (strlen($queryString) > 0) {
+                $query->where('name', 'like', "%$queryString%")
+                    ->orWhere('code', 'like', "%$queryString%")
+                    ->orWhere('description', 'like', "%$queryString%");
+            }
+        });
+
+        return $this;
+    }
+
+    /**
      * Fetch all the products as paginated
      *
      * @return mixed
      */
-    public function get($length = 10)
+    public function get($length = 1)
     {
-        return $this->product->paginate($length);
+        return $this->product->paginate($length)
+            ->appends(request()->query());
     }
 
     /**
